@@ -12076,11 +12076,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Products.API\\Products.API.csproj",
+      "projectUniqueName": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Products.API\\Products.API.csproj",
       "projectName": "Products.API",
-      "projectPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Products.API\\Products.API.csproj",
+      "projectPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Products.API\\Products.API.csproj",
       "packagesPath": "C:\\Users\\caio.saldanha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Products.API\\obj\\",
+      "outputPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Products.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,0 +1,14 @@
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\bin\Debug\netcoreapp2.2\Login.API.deps.json
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\bin\Debug\netcoreapp2.2\Login.API.runtimeconfig.json
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\bin\Debug\netcoreapp2.2\Login.API.runtimeconfig.dev.json
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\bin\Debug\netcoreapp2.2\Login.API.dll
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\bin\Debug\netcoreapp2.2\Login.API.pdb
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.csprojAssemblyReference.cache
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.csproj.CoreCompileInputs.cache
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.RazorAssemblyInfo.cache
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.RazorAssemblyInfo.cs
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.AssemblyInfoInputs.cache
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.AssemblyInfo.cs
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.RazorTargetAssemblyInfo.cache
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.dll
+C:\Users\caio.saldanha\Documents\Projects\test\EvoxSolutions.zscaiosi\Login.API\obj\Debug\netcoreapp2.2\Login.API.pdb

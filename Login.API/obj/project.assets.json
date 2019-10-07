@@ -12076,11 +12076,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Login.API\\Login.API.csproj",
+      "projectUniqueName": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Login.API\\Login.API.csproj",
       "projectName": "Login.API",
-      "projectPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Login.API\\Login.API.csproj",
+      "projectPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Login.API\\Login.API.csproj",
       "packagesPath": "C:\\Users\\caio.saldanha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\Login.API\\obj\\",
+      "outputPath": "C:\\Users\\caio.saldanha\\Documents\\Projects\\test\\EvoxSolutions.zscaiosi\\Login.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
