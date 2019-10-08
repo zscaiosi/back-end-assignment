@@ -35,9 +35,7 @@ namespace Products.API
         public void ConfigureServices(IServiceCollection services)
         {
             // OAuth2.0
-            services.AddAuthentication(authOpt => {
-                authOpt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(bearerOpt => {
                 bearerOpt.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -54,12 +52,6 @@ namespace Products.API
                 // Define the events handler
                 bearerOpt.Events = new JwtBearerEvents
                 {
-                    OnMessageReceived = msg =>
-                    {
-                        //Console.WriteLine("Token inválido..:. " + msg.Principal.ToString());
-
-                        return Task.CompletedTask;
-                    },
                     OnAuthenticationFailed = context =>
                     {
                         Console.WriteLine("Token inválido..:. " + context.Exception.Message);
@@ -79,7 +71,9 @@ namespace Products.API
             services.AddSingleton<IProductsService, ProductsService>();
             // services.AddSingleton<IPurchasesService, PurchasesService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,7 +89,7 @@ namespace Products.API
                 app.UseHsts();
             }
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

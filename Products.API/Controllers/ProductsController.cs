@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Products.API.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize()]
     public class ProductsController : ControllerBase
     {
         private readonly IProductsService _productsSvc;
