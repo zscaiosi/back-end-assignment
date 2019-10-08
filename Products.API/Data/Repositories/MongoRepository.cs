@@ -14,6 +14,9 @@ namespace Products.API.Data.Repositories
             _mongoClient = mongoClient;
             _config = config;
         }
+        public MongoRepository(MongoClient mongoClient){
+            _mongoClient = mongoClient;
+        }        
         public IMongoDatabase exposeDatabase(){
             return _mongoClient.GetDatabase(_config.GetConnectionString("MONGO_DB"));
         }
