@@ -8,41 +8,119 @@ namespace Products.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PurchasesController : ControllerBase
+    [Authorize()]
+    public class ProductsController : ControllerBase
     {
-        private readonly PurchasesService _purchasesSvc;
-        public PurchasesController(PurchasesService purchasesSvc) {
-            _purchasesSvc = purchasesSvc;
+        private readonly IProductsService _productsSvc;
+        public ProductsController(IProductsService productsSvc) {
+            _productsSvc = productsSvc;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<object>> Get()
+        public async Task<ActionResult<IEnumerable<ProductsEntity>>> Get([FromQuery] GetRequestFilter filter)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return StatusCode(200, await _productsSvc.ListProductsAsync(filter));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode(400);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
-
-        // GET api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public ActionResult<object> Get(int id)
+        public async Task<ActionResult> Get(int id)
         {
-            return "value";
+            try
+            {
+                return StatusCode(200, await _productsSvc.FindProductAsync(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode(400);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
-
-        // POST api/values
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ProductsEntity item)
         {
+            try
+            {
+                return StatusCode(200, await _productsSvc.CreateProductAsync(item));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode(400);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
-
-        // PUT api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(int id, [FromBody] ProductsEntity item)
         {
+            try
+            {
+                return StatusCode(200, await _productsSvc.PutProductAsync(id, item));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode(400);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-        }        
+            try
+            {
+                return StatusCode(200, await _productsSvc.DeleteProductAsync(id));
+            }
+            catch (ArgumentException e)
+            {
+                return StatusCode(400);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }

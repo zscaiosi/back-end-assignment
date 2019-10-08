@@ -19,6 +19,7 @@ using Products.API.Interfaces;
 using Products.API.Services;
 using Products.API.Data.Repositories;
 using MongoDB.Driver;
+using Products.API.Data.Entities;
 
 namespace Products.API
 {
@@ -29,7 +30,12 @@ namespace Products.API
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration) 
+        {
+            this.Configuration = configuration;
+               
+        }
+                public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -68,7 +74,9 @@ namespace Products.API
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IMongoRepository, MongoRepository>(obj => new MongoRepository(Configuration, new MongoClient(Configuration.GetConnectionString("MONGO_CONN_STR"))));            
             services.AddSingleton<IProductsRepository, ProductsRepository>();
+            services.AddSingleton<IProductsOperationsRepository<PurchasesEntity>, PurchasesRepository>();
             services.AddSingleton<IProductsService, ProductsService>();
+            services.AddSingleton<IPurchasesService, PurchasesService>();
             // services.AddSingleton<IPurchasesService, PurchasesService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => {
