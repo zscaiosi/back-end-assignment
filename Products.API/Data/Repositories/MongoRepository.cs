@@ -10,13 +10,14 @@ namespace Products.API.Data.Repositories
         private readonly MongoClient _mongoClient;
         private readonly IConfiguration _config;
 
-        public MongoRepository(MongoClient mongoClient, IConfiguration config){
-            _mongoClient = mongoClient;
+        public MongoRepository(IConfiguration config){
             _config = config;
+            _mongoClient = new MongoClient(_config.GetConnectionString("MONGO_CONN_STR"));
         }
-        public MongoRepository(MongoClient mongoClient){
+        public MongoRepository(IConfiguration config, MongoClient mongoClient){
+            _config = config;
             _mongoClient = mongoClient;
-        }        
+        }
         public IMongoDatabase exposeDatabase(){
             return _mongoClient.GetDatabase(_config.GetConnectionString("MONGO_DB"));
         }

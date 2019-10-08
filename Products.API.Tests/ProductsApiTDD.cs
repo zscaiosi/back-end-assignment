@@ -17,7 +17,7 @@ namespace Products.API.Tests
         public void CollectionIsFilled()
         {
             var client = mongoRepo.exposeDatabase("test");
-            var col = client.GetCollection<ProductEntity>("Product");
+            var col = client.GetCollection<ProductsEntity>("Product");
             Assert.True(col.AsQueryable().FirstOrDefault() != null);
         }
     }

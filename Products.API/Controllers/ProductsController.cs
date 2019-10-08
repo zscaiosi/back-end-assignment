@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Products.API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Products.API.Data.Entities;
+using Products.API.Contracts.Requests;
+using Products.API.Interfaces;
 
 namespace Products.API.Controllers
 {
@@ -10,15 +13,15 @@ namespace Products.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly ProductsService _productsSvc;
-        public ProductsController(ProductsService productsSvc) {
+        private readonly IProductsService _productsSvc;
+        public ProductsController(IProductsService productsSvc) {
             _productsSvc = productsSvc;
         }        
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<object>> Get()
+        public ActionResult<IEnumerable<ProductsEntity>> Get([FromQuery] GetRequestFilter filter)
         {
-            return new string[] { "value1", "value2" };
+            return StatusCode(200, _productsSvc.ListProducts(filter));
         }
 
         // GET api/values/5

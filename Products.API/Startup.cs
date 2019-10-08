@@ -34,31 +34,31 @@ namespace Products.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // OAuth2.0
-            services.AddAuthentication(authOpt => {
-                authOpt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(bearerOpt => {
-                bearerOpt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "zscaiosi",
-                    ValidAudience = "zscaiosi",
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(Configuration["SecurityKey"])
-                    )
-                };
-            });
-            
-            services.AddSingleton<IProductsService, ProductsService>();
-            services.AddSingleton<IPurchasesService, PurchasesService>();
+            // services.AddAuthentication(authOpt => {
+            //     authOpt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            // })
+            // .AddJwtBearer(bearerOpt => {
+            //     bearerOpt.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuer = true,
+            //         ValidateAudience = true,
+            //         ValidateLifetime = true,
+            //         ValidateIssuerSigningKey = true,
+            //         ValidIssuer = "zscaiosi",
+            //         ValidAudience = "zscaiosi",
+            //         IssuerSigningKey = new SymmetricSecurityKey(
+            //             Encoding.UTF8.GetBytes(Configuration["SecurityKey"])
+            //         )
+            //     };
+            // });
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IMongoRepository, MongoRepository>(obj => new MongoRepository(Configuration, new MongoClient(Configuration.GetConnectionString("MONGO_CONN_STR"))));            
             services.AddSingleton<IProductsRepository, ProductsRepository>();
-            services.AddSingleton<MongoClient>(obj => new MongoClient(Configuration.GetConnectionString("MONGO_CONN_STR")));
-            services.AddSingleton<IMongoRepository, MongoRepository>();
+            services.AddSingleton<IProductsService, ProductsService>();
+            // services.AddSingleton<IPurchasesService, PurchasesService>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

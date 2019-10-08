@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using Products.API.Data.Entities;
+using Products.API.Contracts.Requests;
 
 namespace Products.API.Interfaces
 {
     public interface IProductsService
     {
-        IEnumerable<object> ListProducts();
-        object FindProduct(int pId);
-        object CreateProduct(object item);
-        object PutProduct(int pId, object item);
-        object PatchProduct(int pId, object item);
+        IEnumerable<ProductsEntity> ListProducts(GetRequestFilter filters);
+        ProductsEntity FindProduct(int pId);
+        ProductsEntity CreateProduct(ProductsEntity item);
+        ProductsEntity PutProduct(int pId, ProductsEntity item);
+        ProductsEntity PatchProduct(int pId, ProductsEntity item);
         bool DeleteProduct(int pId);
     }
 }
