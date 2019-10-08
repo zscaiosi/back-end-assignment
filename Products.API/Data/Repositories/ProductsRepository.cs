@@ -5,6 +5,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Products.API.Data.Repositories
 {
@@ -12,6 +14,7 @@ namespace Products.API.Data.Repositories
     {
         private readonly IMongoRepository _mongoRepo;
         private IMongoDatabase _db { get; set; }
+        private IMongoCollection<ProductsEntity> _collection { get; set; }
         private const string COLLECTION_NAME = "Products";
         private FilterDefinitionBuilder<ProductsEntity> filter;
         private UpdateDefinitionBuilder<ProductsEntity> updater;
@@ -19,6 +22,7 @@ namespace Products.API.Data.Repositories
         public ProductsRepository(IMongoRepository mongoRepo) {
             _mongoRepo = mongoRepo;
             _db = _mongoRepo.exposeDatabase("test");
+            _collection = _db.GetCollection<ProductsEntity>(COLLECTION_NAME);
             filter = Builders<ProductsEntity>.Filter;
             updater = Builders<ProductsEntity>.Update;
         }
@@ -35,23 +39,33 @@ namespace Products.API.Data.Repositories
         /// <returns></returns>
         public async Task<ProductsEntity> FindAsync(long pId) =>
             (await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindAsync(e => e.Id == pId)).FirstOrDefault();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public async Task<ProductsEntity> InsertAsync(ProductsEntity p)
         {
-            //await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).InsertOneAsync(p);
-            throw new NotImplementedException();
+            await _collection.InsertOneAsync(p);
+            return p;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public async Task<ProductsEntity> UpdateAsync(long pId, ProductsEntity p)
         {
-            //return await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindOneAndUpdateAsync(filter.Eq("_id", pId));
-            throw new NotImplementedException();
+            await _collection.ReplaceOneAsync(filter.Eq("_id", pId), p);
+            return p;
         }
-        public async Task<ProductsEntity> ModifyAsync(int pId, ProductsEntity p)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<bool> RemoveAsync(int pId)
-        {
-            throw new NotImplementedException();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
+        public async Task<bool> RemoveAsync(int pId) =>
+            (await _collection.DeleteOneAsync(filter.Eq("_id", pId))).DeletedCount > 0;
     }
 }

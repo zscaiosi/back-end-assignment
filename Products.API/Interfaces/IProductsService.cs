@@ -11,7 +11,6 @@ namespace Products.API.Interfaces
         Task<ProductsEntity> FindProductAsync(int pId);
         Task<ProductsEntity> CreateProductAsync(ProductsEntity item);
         Task<ProductsEntity> PutProductAsync(int pId, ProductsEntity item);
-        Task<ProductsEntity> PatchProductAsync(int pId, ProductsEntity item);
         Task<bool> DeleteProductAsync(int pId);
     }
 }
