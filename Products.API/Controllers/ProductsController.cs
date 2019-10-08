@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Products.API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,6 +10,10 @@ namespace Products.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly ProductsService _productsSvc;
+        public ProductsController(ProductsService productsSvc) {
+            _productsSvc = productsSvc;
+        }        
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<object>> Get()
