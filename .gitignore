@@ -2,3 +2,5 @@ Login.API/obj
 Login.API/bin
 Products.API/obj
 Products.API/bin
+Products.API.Tests/bin
+Products.API.Tests/obj

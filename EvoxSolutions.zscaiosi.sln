@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.API", "Products.AP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login.API", "Login.API\Login.API.csproj", "{6E34BCFD-AA3E-40B2-B951-7FCC9EDD1132}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.API.Tests", "Products.API.Tests\Products.API.Tests.csproj", "{516B5356-EAAD-4F16-8EF6-009CCA55D56A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{6E34BCFD-AA3E-40B2-B951-7FCC9EDD1132}.Release|x64.Build.0 = Release|Any CPU
 		{6E34BCFD-AA3E-40B2-B951-7FCC9EDD1132}.Release|x86.ActiveCfg = Release|Any CPU
 		{6E34BCFD-AA3E-40B2-B951-7FCC9EDD1132}.Release|x86.Build.0 = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|x64.Build.0 = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Debug|x86.Build.0 = Debug|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|x64.ActiveCfg = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|x64.Build.0 = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|x86.ActiveCfg = Release|Any CPU
+		{516B5356-EAAD-4F16-8EF6-009CCA55D56A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
