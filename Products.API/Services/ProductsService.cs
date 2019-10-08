@@ -5,6 +5,7 @@ using Products.API.Interfaces;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Products.API.Services
 {
@@ -15,23 +16,23 @@ namespace Products.API.Services
         public ProductsService(IProductsRepository productsRepo) {
             _productsRepo = productsRepo;
         }
-        public IEnumerable<ProductsEntity> ListProducts(GetRequestFilter filter){
-            var list = _productsRepo.FindAll();
+        public async Task<IEnumerable<ProductsEntity>> ListProductsAsync(GetRequestFilter filter){
+            var list = await _productsRepo.FindAllAsync();
             return list.Skip(filter.Page - 1).Take(filter.Size);
         }
-        public ProductsEntity FindProduct(int pId){
+        public Task<ProductsEntity> FindProductAsync(int pId){
             throw new NotImplementedException();
         }
-        public ProductsEntity CreateProduct(ProductsEntity item){
+        public Task<ProductsEntity> CreateProductAsync(ProductsEntity item){
             throw new NotImplementedException();
         }
-        public ProductsEntity PutProduct(int pId, ProductsEntity item){
+        public Task<ProductsEntity> PutProductAsync(int pId, ProductsEntity item){
             throw new NotImplementedException();
         }
-        public ProductsEntity PatchProduct(int pId, ProductsEntity item){
+        public Task<ProductsEntity> PatchProductAsync(int pId, ProductsEntity item){
             throw new NotImplementedException();
         }
-        public bool DeleteProduct(int pId){
+        public async Task<bool> DeleteProductAsync(int pId){
             throw new NotImplementedException();
         }
     }

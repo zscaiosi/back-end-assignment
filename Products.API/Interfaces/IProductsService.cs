@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using Products.API.Data.Entities;
 using Products.API.Contracts.Requests;
+using System.Threading.Tasks;
 
 namespace Products.API.Interfaces
 {
     public interface IProductsService
     {
-        IEnumerable<ProductsEntity> ListProducts(GetRequestFilter filters);
-        ProductsEntity FindProduct(int pId);
-        ProductsEntity CreateProduct(ProductsEntity item);
-        ProductsEntity PutProduct(int pId, ProductsEntity item);
-        ProductsEntity PatchProduct(int pId, ProductsEntity item);
-        bool DeleteProduct(int pId);
+        Task<IEnumerable<ProductsEntity>> ListProductsAsync(GetRequestFilter filters);
+        Task<ProductsEntity> FindProductAsync(int pId);
+        Task<ProductsEntity> CreateProductAsync(ProductsEntity item);
+        Task<ProductsEntity> PutProductAsync(int pId, ProductsEntity item);
+        Task<ProductsEntity> PatchProductAsync(int pId, ProductsEntity item);
+        Task<bool> DeleteProductAsync(int pId);
     }
 }

@@ -19,10 +19,8 @@ namespace Products.API.Controllers
         }        
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<ProductsEntity>> Get([FromQuery] GetRequestFilter filter)
-        {
-            return StatusCode(200, _productsSvc.ListProducts(filter));
-        }
+        public async Task<ActionResult<IEnumerable<ProductsEntity>>> Get([FromQuery] GetRequestFilter filter) =>
+            StatusCode(200, await _productsSvc.ListProductsAsync(filter));
 
         // GET api/values/5
         [HttpGet("{id}")]
