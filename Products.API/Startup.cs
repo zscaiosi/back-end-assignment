@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Products.API.Interfaces;
 using Products.API.Services;
 using Products.API.Data.Repositories;
+using MongoDB.Driver;
 
 namespace Products.API
 {
@@ -56,6 +57,8 @@ namespace Products.API
             services.AddSingleton<IProductsService, ProductsService>();
             services.AddSingleton<IPurchasesService, PurchasesService>();
             services.AddSingleton<IProductsRepository, ProductsRepository>();
+            services.AddSingleton<MongoClient>(obj => new MongoClient(Configuration.GetConnectionString("MONGO_CONN_STR")));
+            services.AddSingleton<IMongoRepository, MongoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
