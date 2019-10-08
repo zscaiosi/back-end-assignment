@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Products.API.Interfaces;
+using Products.API.Services;
+using Products.API.Data.Repositories;
 
 namespace Products.API
 {
@@ -49,6 +52,10 @@ namespace Products.API
                     )
                 };
             });
+            
+            services.AddSingleton<IProductsService, ProductsService>();
+            services.AddSingleton<IPurchasesService, PurchasesService>();
+            services.AddSingleton<IProductsRepository, ProductsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
