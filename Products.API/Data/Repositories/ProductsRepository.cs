@@ -37,19 +37,21 @@ namespace Products.API.Data.Repositories
             (await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindAsync(e => e.Id == pId)).FirstOrDefault();
         public async Task<ProductsEntity> InsertAsync(ProductsEntity p)
         {
-            await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).InsertOneAsync(p);
+            //await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).InsertOneAsync(p);
+            throw new NotImplementedException();
         }
         public async Task<ProductsEntity> UpdateAsync(long pId, ProductsEntity p)
         {
-            return await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindOneAndUpdateAsync(filter.Eq("_id", pId));
+            //return await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindOneAndUpdateAsync(filter.Eq("_id", pId));
+            throw new NotImplementedException();
         }
         public async Task<ProductsEntity> ModifyAsync(int pId, ProductsEntity p)
         {
-
+            throw new NotImplementedException();
         }
         public async Task<bool> RemoveAsync(int pId)
         {
-
+            throw new NotImplementedException();
         }
     }
 }

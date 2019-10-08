@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Products.API.Data.Entities;
 using Products.API.Contracts.Requests;
 using Products.API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Products.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase

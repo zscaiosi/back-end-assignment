@@ -1,3 +1,9 @@
+## How to execute and test the project:
+#### Prerequistes:
+- Docker
+- WebBrowser
+- MongoDB
+## Original
 Elabore uma aplicação exemplo **RESTful**, ou seja, a aplicação deverá aplicar os princípios de **REST** a partir da criação de uma **WebApi**. Esse exemplo será um CRUD simples e deverá ser integrado a uma camada de front **(o layout e elementos gráficos não serão avaliados, apenas a parte de lógica e integração, preferencialmente o uso de Vue.js ou React).** 
  
 São requisitos técnicos, a estruturação do projeto utilizando **.NET Core**, como prática de desenvolvimento, o **BDD** e a realização de ao menos um **teste unitário**. 
