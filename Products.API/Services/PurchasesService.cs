@@ -15,20 +15,17 @@ namespace Products.API.Services
             _purchasesRepo = purchasesRepo;
         }
         public async Task<IEnumerable<PurchasesEntity>> ListPurchases(GetRequestFilter filter) =>
-            (await _purchasesRepo.ListAsync<PurchasesEntity>(filter)).Skip(filter.Page - 1).Take(filter.Size);
+            (await _purchasesRepo.ListAsync(filter)).Skip(filter.Page - 1).Take(filter.Size);
         public async Task<PurchasesEntity> FindPurchase(long pId) =>
-            await _purchasesRepo.FindAsync<PurchasesEntity>(pId);
+            await _purchasesRepo.FindAsync(pId);
         public async Task<PurchasesEntity> CreatePurchase(PurchasesEntity item){
-            throw new NotImplementedException();
+            return await _purchasesRepo.CreateAsync(item);
         }
         public async Task<PurchasesEntity> PutPurchase(long pId, PurchasesEntity item){
-            throw new NotImplementedException();
-        }
-        public async Task<PurchasesEntity> PatchPurchase(long pId, PurchasesEntity item){
-            throw new NotImplementedException();
+            return await _purchasesRepo.ModifyAsync(pId, item);
         }
         public async Task<bool> DeletePurchase(long pId){
-            throw new NotImplementedException();
+            return await _purchasesRepo.DeleteAsync(pId);
         }        
     }
 }

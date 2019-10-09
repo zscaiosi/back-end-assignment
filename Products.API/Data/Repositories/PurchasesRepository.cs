@@ -31,8 +31,8 @@ namespace Products.API.Data.Repositories
         }
         public async Task<bool> DeleteAsync(long id) =>
             (await _collection.DeleteOneAsync(filter.Eq("_id", id))).DeletedCount > 0;
-        public async Task<PurchasesEntity> FindAsync(long id) =>
-            (await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).FindAsync(e => e.Id == pId)).FirstOrDefault();
+        public async Task<PurchasesEntity> FindAsync(long pId) =>
+            (await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).FindAsync(filter.Eq("_id", pId))).FirstOrDefault();
 
         public async Task<IEnumerable<PurchasesEntity>> ListAsync(GetRequestFilter filter) =>
             await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).AsQueryable().ToListAsync();

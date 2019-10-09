@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using Products.API.Services;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Products.API.Data.Entities;
+using Products.API.Contracts.Requests;
+using Products.API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Products.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize()]
-    public class ProductsController : ControllerBase
+    public class PurchasesController : ControllerBase
     {
-        private readonly IProductsService _productsSvc;
-        public ProductsController(IProductsService productsSvc) {
-            _productsSvc = productsSvc;
+        private readonly IPurchasesService _purchasesSvc;
+        public PurchasesController(IPurchasesService purchasesSvc) {
+            _purchasesSvc = purchasesSvc;
         }
         /// <summary>
         /// 
@@ -21,11 +25,11 @@ namespace Products.API.Controllers
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductsEntity>>> Get([FromQuery] GetRequestFilter filter)
+        public async Task<ActionResult<IEnumerable<PurchasesEntity>>> Get([FromQuery] GetRequestFilter filter)
         {
             try
             {
-                return StatusCode(200, await _productsSvc.ListProductsAsync(filter));
+                return StatusCode(200, await _purchasesSvc.ListPurchases(filter));
             }
             catch (ArgumentException e)
             {
@@ -42,11 +46,11 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id)
+        public async Task<ActionResult> Get(long id)
         {
             try
             {
-                return StatusCode(200, await _productsSvc.FindProductAsync(id));
+                return StatusCode(200, await _purchasesSvc.FindPurchase(id));
             }
             catch (ArgumentException e)
             {
@@ -63,11 +67,11 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ProductsEntity item)
+        public async Task<IActionResult> Post([FromBody] PurchasesEntity item)
         {
             try
             {
-                return StatusCode(200, await _productsSvc.CreateProductAsync(item));
+                return StatusCode(200, await _purchasesSvc.CreatePurchase(item));
             }
             catch (ArgumentException e)
             {
@@ -85,11 +89,11 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProductsEntity item)
+        public async Task<IActionResult> Put(long id, [FromBody] PurchasesEntity item)
         {
             try
             {
-                return StatusCode(200, await _productsSvc.PutProductAsync(id, item));
+                return StatusCode(200, await _purchasesSvc.PutPurchase(id, item));
             }
             catch (ArgumentException e)
             {
@@ -111,7 +115,7 @@ namespace Products.API.Controllers
         {
             try
             {
-                return StatusCode(200, await _productsSvc.DeleteProductAsync(id));
+                return StatusCode(200, await _purchasesSvc.DeletePurchase(id));
             }
             catch (ArgumentException e)
             {
