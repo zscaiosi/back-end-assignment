@@ -10,6 +10,8 @@ using Products.API.Data.Entities;
 using System.Threading.Tasks;
 using Products.API.Contracts.Requests;
 using System.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace Products.API.Tests
 {
@@ -20,19 +22,31 @@ namespace Products.API.Tests
         private IMongoRepository mongoRepo;
         private IProductsRepository productRepo;
         private IProductsService productsService;
+        private ProductsEntity product;
         public ProductsApiTDD() {
+            IHostingEnvironment hosting = new HostingEnvironment();
             cb = new ConfigurationBuilder();
-            cb.AddJsonFile("appsettings.json");
+            cb.AddJsonFile(hosting.ContentRootPath + "appsettings.json");
             configuration = cb.Build();
             mongoRepo = new MongoRepository(configuration, new MongoClient("mongodb://localhost:27017/test"));
             productRepo = new ProductsRepository(mongoRepo);
             productsService = new ProductsService(productRepo);
+            product = new ProductsEntity
+            {
+                Id = 10,
+                description = "TDD",
+                bundleId = 1,
+                createdAt = DateTime.UtcNow.ToString(),
+                salesPrice = (decimal)10.00,
+                Sku = "t10"
+            };
         }
         [Fact]
         public void CollectionIsFilled()
         {
             var client = mongoRepo.exposeDatabase("test");
-            var col = client.GetCollection<ProductsEntity>("Product");
+            var col = client.GetCollection<ProductsEntity>("Products");
+
             Assert.True(col.AsQueryable().FirstOrDefault() != null);
         }
         [Fact]
@@ -44,6 +58,14 @@ namespace Products.API.Tests
             });
 
             Assert.True(list.Count() > 0, "List contains elements");
+        }
+        [Fact]
+        public async Task CreatesAProduct()
+        {
+            var created = await productsService.CreateProductAsync(product);
+            var found = await productsService.FindProductAsync(created.Id);
+
+            Assert.NotNull(found);
         }
     }
 }

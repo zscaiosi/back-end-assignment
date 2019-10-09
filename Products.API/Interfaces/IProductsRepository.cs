@@ -10,6 +10,6 @@ namespace Products.API.Interfaces
         Task<ProductsEntity> FindAsync(long pId);
         Task<ProductsEntity> InsertAsync(ProductsEntity p);
         Task<ProductsEntity> UpdateAsync(long pId, ProductsEntity p);
-        Task<bool> RemoveAsync(int pId);
+        Task<bool> RemoveAsync(long pId);
     }
 }

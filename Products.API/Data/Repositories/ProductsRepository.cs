@@ -65,7 +65,7 @@ namespace Products.API.Data.Repositories
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public async Task<bool> RemoveAsync(int pId) =>
+        public async Task<bool> RemoveAsync(long pId) =>
             (await _collection.DeleteOneAsync(filter.Eq("_id", pId))).DeletedCount > 0;
     }
 }

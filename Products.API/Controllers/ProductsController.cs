@@ -46,7 +46,7 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id)
+        public async Task<ActionResult> Get(long id)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] ProductsEntity item)
+        public async Task<IActionResult> Put(long id, [FromBody] ProductsEntity item)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
             try
             {

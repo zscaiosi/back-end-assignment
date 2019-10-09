@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Products.API\Products.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>
