@@ -8,8 +8,17 @@ namespace Products.API.Contracts.Views
 {
     public class PurchaseOperationView
     {
-        public int Quantity { get; set; }
+        /// <summary>
+        /// The number of bundles to buy in a purchase
+        /// </summary>
+        public int Quantity { get; set; } = 1;
+        /// <summary>
+        /// The Bundle itself
+        /// </summary>
         public BundlesEntity Bundle { get; set; }
+        /// <summary>
+        /// Buyer's CNPJ
+        /// </summary>
         public string Cnpj {get;set;}
     }
 }

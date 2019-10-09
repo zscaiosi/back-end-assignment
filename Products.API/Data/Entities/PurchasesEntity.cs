@@ -10,7 +10,7 @@ namespace Products.API.Data.Entities
     {
         [BsonElement("_id")]
         [JsonProperty("_id")]
-        public long Id {get;set;}
+        public string Id {get;set;}
         [BsonElement("cnpj")]
         public string Cnpj { get; set; }
         [BsonElement("createdAt")]

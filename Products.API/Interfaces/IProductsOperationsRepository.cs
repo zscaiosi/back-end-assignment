@@ -7,6 +7,7 @@ namespace Products.API.Interfaces
     public interface IProductsOperationsRepository<T>
     {
         Task<T> CreateAsync(T e);
+        Task BulkCreateAsync(IEnumerable<T> l);
         Task<T> ModifyAsync(long id, T e);
         Task<bool> DeleteAsync(long id);
         Task<T> FindAsync(long id);

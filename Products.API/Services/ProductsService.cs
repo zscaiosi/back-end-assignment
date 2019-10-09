@@ -51,8 +51,10 @@ namespace Products.API.Services
             //Checks constraints
             if (item == null)
                 throw new ArgumentValidatorException("Empty values.");
-            if (item.CheckId() == false || item.CheckSku() == false)
+            if (!item.CheckId() || !item.CheckSku())
                 throw new ArgumentValidatorException("Invalid values.");
+            if (await item.AlreadyExists(_productsRepo))
+                throw new ArgumentValidatorException("Duplicated ID.");
 
             return await _productsRepo.InsertAsync(item);
         }

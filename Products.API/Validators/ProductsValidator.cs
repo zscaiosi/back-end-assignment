@@ -1,4 +1,5 @@
 ﻿using Products.API.Data.Entities;
+using Products.API.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,13 @@ namespace Products.API.Validators
         /// <returns></returns>
         public static bool CheckSku(this ProductsEntity pe) =>
             !string.IsNullOrEmpty(pe.Sku);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pe"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static async Task<bool> AlreadyExists(this ProductsEntity pe, IProductsRepository r) =>
+            (await r.FindAsync(pe.Id)) != null;
     }
 }

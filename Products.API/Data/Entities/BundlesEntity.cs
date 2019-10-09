@@ -13,7 +13,5 @@ namespace Products.API.Data.Entities
         public string CreatedAt { get; set; }
         [BsonElement("quantity")]
         public int Quantity { get; set; }
-        [BsonElement("totalPrice")]
-        public int TotalPrice { get; set; }
     }
 }

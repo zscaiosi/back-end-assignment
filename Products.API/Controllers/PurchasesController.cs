@@ -34,7 +34,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -55,7 +55,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -68,7 +68,7 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PurchaseOperationView item)
+        public async Task<ActionResult> Post([FromBody] PurchaseOperationView item)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -90,7 +90,7 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(long id, [FromBody] PurchasesEntity item)
+        public async Task<ActionResult> Put(long id, [FromBody] PurchasesEntity item)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -112,7 +112,7 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {

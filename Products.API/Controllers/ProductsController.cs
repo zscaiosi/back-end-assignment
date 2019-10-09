@@ -33,7 +33,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -75,7 +75,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -97,7 +97,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {
@@ -119,7 +119,7 @@ namespace Products.API.Controllers
             }
             catch (ArgumentException e)
             {
-                return StatusCode(400);
+                return StatusCode(400, e.Message);
             }
             catch (Exception e)
             {

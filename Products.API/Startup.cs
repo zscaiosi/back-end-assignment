@@ -72,6 +72,7 @@ namespace Products.API
             services.AddSingleton<IProductsOperationsRepository<BundlesEntity>, BundleRepository<BundlesEntity>>();
             services.AddSingleton<IProductsService, ProductsService>();
             services.AddSingleton<IPurchasesService, PurchasesService>();
+            services.AddSingleton<IBundlesService, BundlesService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

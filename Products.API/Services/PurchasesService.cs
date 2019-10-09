@@ -1,6 +1,7 @@
 using Products.API.Contracts.Requests;
 using Products.API.Contracts.Views;
 using Products.API.Data.Entities;
+using Products.API.Exceptions;
 using Products.API.Interfaces;
 using Products.API.Validators;
 using System;
@@ -22,35 +23,68 @@ namespace Products.API.Services
             _productsRepo = productsRepo;
             _bundleRepo = bundleRepo;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<PurchasesEntity>> ListPurchases(GetRequestFilter filter) =>
             (await _purchasesRepo.ListAsync(filter)).Skip(filter.Page - 1).Take(filter.Size);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
         public async Task<PurchasesEntity> FindPurchase(long pId) =>
             await _purchasesRepo.FindAsync(pId);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public async Task<PurchasesEntity> CreatePurchase(PurchaseOperationView item){
             if (!item.CheckPurchaseView())
-                throw new ArgumentException();
-            // First creates all entitites
-            var products = (await _productsRepo.FindAllAsync()).Where(pr => pr.bundleId == item.Bundle.Id);
+                throw new ArgumentValidatorException("Invalid values.");
+            // Finds all products which are related to this Bundle of Products
+            var bundle = await _bundleRepo.FindAsync(item.Bundle.Id);
+            // Does not exist yet then creates one. (Assuming Bundles are created on demand)
+            if (bundle == null)
+                await _bundleRepo.CreateAsync(item.Bundle);
 
+            var products = (await _productsRepo.FindAllAsync()).Where(pr => pr.bundleId == item.Bundle.Id);
+            if (products.Count() < 1)
+                throw new ArgumentValidatorException("There are no valid Products for this Bundle.");
+
+            // Sum all product's prices
             var sum = products.Select(prd => prd.salesPrice).Sum();
+
             var p = new PurchasesEntity{
-                Id = 1,
+                Id = $"{products.First().Sku}0{DateTime.UtcNow.Millisecond}",
                 Cnpj = item.Cnpj,
                 CreatedAt = DateTime.UtcNow.ToString(),
                 BundleId = item.Bundle.Id,
-                Expenditures = sum * item.Bundle.Quantity,
+                Expenditures = sum * item.Bundle.Quantity * item.Quantity,
                 Deleted = false
             };
 
-            var b = await _bundleRepo.CreateAsync(item.Bundle);
-            
             return await _purchasesRepo.CreateAsync(p);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public async Task<PurchasesEntity> PutPurchase(long pId, PurchasesEntity item){
             return await _purchasesRepo.ModifyAsync(pId, item);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pId"></param>
+        /// <returns></returns>
         public async Task<bool> DeletePurchase(long pId){
             return await _purchasesRepo.DeleteAsync(pId);
-        }        
+        }
     }
 }

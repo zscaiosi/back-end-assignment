@@ -18,12 +18,12 @@ namespace Login.API.Controllers
     public class OAuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly string _user;
+        private readonly string _login;
         private readonly string _password;
         public OAuthController(IConfiguration config)
         {
             _configuration = config;
-            _user = _configuration["username"];
+            _login = _configuration["login"];
             _password = _configuration["password"];
         }
         /// <summary>
@@ -35,23 +35,23 @@ namespace Login.API.Controllers
         public ActionResult<PostAccessTokenResponse> Post([FromBody]PostTokenRequest request)
         {
             // For simplicity's sake I will not implement the authentication process, but just leave a dumb check
-            if (request.user != _user || request.password != _password)
+            if (request.user != _login || request.password != _password)
                 return StatusCode(403);
 
-            // Build Claims
+            // Building Claims
             var claims = new[]{
                 new Claim("uid", "123456789"),
                 new Claim("scope", "Products.API")
             };
-
+            // Just a password for simplicity's sake
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["SecurityKey"])
             );
-
+            // Now the signature
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var expire = DateTime.Now.AddHours(24);
-
+            // The signed JWT
             var token = new JwtSecurityToken(
                 issuer: "evoxsolutions",
                 audience: "evoxsolutions",
