@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 
 namespace Products.API.Data.Entities {
     public class ProductsEntity {
-        [BsonId]
         [BsonElement("_id")]
         [JsonProperty("_id")]
         public long Id {get;set;}

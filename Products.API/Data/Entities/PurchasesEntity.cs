@@ -8,7 +8,6 @@ namespace Products.API.Data.Entities
 {
     public class PurchasesEntity
     {
-        [BsonId]
         [BsonElement("_id")]
         [JsonProperty("_id")]
         public long Id {get;set;}

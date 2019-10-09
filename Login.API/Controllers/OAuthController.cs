@@ -23,7 +23,7 @@ namespace Login.API.Controllers
         public OAuthController(IConfiguration config)
         {
             _configuration = config;
-            _user = _configuration["user"];
+            _user = _configuration["username"];
             _password = _configuration["password"];
         }
         /// <summary>

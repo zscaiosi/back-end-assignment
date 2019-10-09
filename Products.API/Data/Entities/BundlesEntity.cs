@@ -5,7 +5,6 @@ namespace Products.API.Data.Entities
 {
     public class BundlesEntity
     {
-        [BsonId]
         [BsonElement("_id")]
         public long Id { get; set; }
         [BsonElement("description")]

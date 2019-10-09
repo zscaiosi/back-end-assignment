@@ -30,14 +30,15 @@ namespace Products.API.Services
             if (!item.CheckPurchaseView())
                 throw new ArgumentException();
             // First creates all entitites
-            var products = (await _productsRepo.FindAllAsync()).Where(p => p.bundleId == item.Bundle.Id).Select(p => p.salesPrice).Sum();
+            var products = (await _productsRepo.FindAllAsync()).Where(pr => pr.bundleId == item.Bundle.Id);
 
+            var sum = products.Select(prd => prd.salesPrice).Sum();
             var p = new PurchasesEntity{
                 Id = 1,
                 Cnpj = item.Cnpj,
                 CreatedAt = DateTime.UtcNow.ToString(),
                 BundleId = item.Bundle.Id,
-                Expenditures = products * item.Bundle.Quantity,
+                Expenditures = sum * item.Bundle.Quantity,
                 Deleted = false
             };
 
