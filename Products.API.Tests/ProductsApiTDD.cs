@@ -12,6 +12,7 @@ using Products.API.Contracts.Requests;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Internal;
+using Products.API.Exceptions;
 
 namespace Products.API.Tests
 {
@@ -22,7 +23,7 @@ namespace Products.API.Tests
         private IMongoRepository mongoRepo;
         private IProductsRepository productRepo;
         private IProductsService productsService;
-        private ProductsEntity product;
+
         public ProductsApiTDD() {
             IHostingEnvironment hosting = new HostingEnvironment();
             cb = new ConfigurationBuilder();
@@ -31,15 +32,7 @@ namespace Products.API.Tests
             mongoRepo = new MongoRepository(configuration, new MongoClient("mongodb://localhost:27017/test"));
             productRepo = new ProductsRepository(mongoRepo);
             productsService = new ProductsService(productRepo);
-            product = new ProductsEntity
-            {
-                Id = 10,
-                description = "TDD",
-                bundleId = 1,
-                createdAt = DateTime.UtcNow.ToString(),
-                salesPrice = (decimal)10.00,
-                Sku = "t10"
-            };
+
         }
         [Fact]
         public void CollectionIsFilled()
@@ -59,13 +52,19 @@ namespace Products.API.Tests
 
             Assert.True(list.Count() > 0, "List contains elements");
         }
-        [Fact]
-        public async Task CreatesAProduct()
+        [Theory]
+        [InlineData(null)]
+        public async Task ThrowsExceptionIfNull(ProductsEntity product)
         {
-            var created = await productsService.CreateProductAsync(product);
-            var found = await productsService.FindProductAsync(created.Id);
-
-            Assert.NotNull(found);
+            try
+            {
+                var created = await productsService.CreateProductAsync(product);
+                var found = await productsService.FindProductAsync(created.Id);
+            }
+            catch (Exception e)
+            {
+                Assert.IsType(new ArgumentValidatorException("").GetType(), e);
+            }
         }
     }
 }
