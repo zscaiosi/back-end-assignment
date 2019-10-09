@@ -17,6 +17,10 @@ namespace Products.API.Data.Entities
         [BsonElement("createdAt")]
         public string CreatedAt { get; set; }
         [BsonElement("bundleId")]
-        public long bundleId { get; set; }
+        public long BundleId { get; set; }
+        [BsonElement("expenditures")]
+        public decimal Expenditures {get;set;}
+        [BsonElement("deleted")]
+        public bool Deleted {get;set;}
     }
 }

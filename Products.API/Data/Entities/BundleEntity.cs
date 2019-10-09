@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace BundleEntity {
+namespace Products.API.Data.Entities {
     public class BundleEntity {
         [BsonId]
         [BsonElement("_id")]

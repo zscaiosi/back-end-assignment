@@ -69,9 +69,9 @@ namespace Products.API
             services.AddSingleton<IMongoRepository, MongoRepository>(obj => new MongoRepository(Configuration, new MongoClient(Configuration.GetConnectionString("MONGO_CONN_STR"))));            
             services.AddSingleton<IProductsRepository, ProductsRepository>();
             services.AddSingleton<IProductsOperationsRepository<PurchasesEntity>, PurchasesRepository<PurchasesEntity>>();
+            services.AddSingleton<IProductsOperationsRepository<BundlesEntity>, BundleRepository<BundlesEntity>>();
             services.AddSingleton<IProductsService, ProductsService>();
             services.AddSingleton<IPurchasesService, PurchasesService>();
-            // services.AddSingleton<IPurchasesService, PurchasesService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;

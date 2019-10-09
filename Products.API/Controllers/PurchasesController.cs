@@ -7,6 +7,7 @@ using Products.API.Data.Entities;
 using Products.API.Contracts.Requests;
 using Products.API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Products.API.Contracts.Views;
 
 namespace Products.API.Controllers
 {
@@ -67,7 +68,7 @@ namespace Products.API.Controllers
         /// <param name="item"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PurchasesEntity item)
+        public async Task<IActionResult> Post([FromBody] PurchaseOperationView item)
         {
             try
             {

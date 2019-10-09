@@ -8,8 +8,8 @@ namespace Products.API.Contracts.Views
 {
     public class PurchaseOperationView
     {
-        public List<ProductsEntity> Products { get; set; }
         public int Quantity { get; set; }
         public BundlesEntity Bundle { get; set; }
+        public string Cnpj {get;set;}
     }
 }
