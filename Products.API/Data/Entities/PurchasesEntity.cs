@@ -9,7 +9,6 @@ namespace Products.API.Data.Entities
     public class PurchasesEntity
     {
         [BsonElement("_id")]
-        [JsonProperty("_id")]
         public string Id {get;set;}
         [BsonElement("cnpj")]
         public string Cnpj { get; set; }

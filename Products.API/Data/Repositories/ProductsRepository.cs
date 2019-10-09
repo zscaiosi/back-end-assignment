@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Products.API.Contracts.Views;
 
 namespace Products.API.Data.Repositories
 {
@@ -57,7 +58,7 @@ namespace Products.API.Data.Repositories
         /// <returns></returns>
         public async Task<ProductsEntity> UpdateAsync(long pId, ProductsEntity p)
         {
-            await _collection.ReplaceOneAsync(filter.Eq("_id", pId), p);
+            await _collection.UpdateOneAsync(filter.Eq("_id", pId), updater.Set("sku", p.Sku).Set("salesPrice", p.SalesPrice).Set("description", p.description).Set("bundleId", p.bundleId));
             return p;
         }
         /// <summary>

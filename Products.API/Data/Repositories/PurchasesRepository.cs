@@ -42,7 +42,7 @@ namespace Products.API.Data.Repositories
         /// <param name="e"></param>
         /// <returns></returns>
         public async Task<PurchasesEntity> ModifyAsync(long id, PurchasesEntity e){
-            await _collection.ReplaceOneAsync(filter.Eq("_id", id), e);
+            await _collection.UpdateOneAsync(filter.Eq("_id", id), updater.Set("cnpj", e.).Set("bundleId", e.SalesPrice));
             return e;
         }
         /// <summary>

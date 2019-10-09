@@ -56,7 +56,7 @@ namespace Products.API.Services
                 throw new ArgumentValidatorException("There are no valid Products for this Bundle.");
 
             // Sum all product's prices
-            var sum = products.Select(prd => prd.salesPrice).Sum();
+            var sum = products.Select(prd => prd.SalesPrice).Sum();
 
             var p = new PurchasesEntity{
                 Id = $"{products.First().Sku}0{DateTime.UtcNow.Millisecond}",

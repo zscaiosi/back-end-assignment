@@ -2,12 +2,10 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Products.API.Data.Entities {
     public class ProductsEntity {
         [BsonElement("_id")]
-        [JsonProperty("_id")]
         public long Id {get;set;}
         [BsonElement("sku")]
         public string Sku {get;set;}
@@ -18,6 +16,6 @@ namespace Products.API.Data.Entities {
         [BsonElement("bundleId")]
         public long bundleId {get;set;}
         [BsonElement("salesPrice")]
-        public decimal salesPrice {get;set;}
+        public decimal SalesPrice {get;set;}
     }
 }

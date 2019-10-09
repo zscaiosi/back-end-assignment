@@ -68,7 +68,7 @@ namespace Products.API.Services
             //Checks constraints
             if (item == null || pId < 1)
                 throw new ArgumentValidatorException("Empty values.");
-            if (!item.CheckId() || !item.CheckSku())
+            if (!item.CheckSku())
                 throw new ArgumentValidatorException("Invalid values.");
 
             return await _productsRepo.UpdateAsync(pId, item);
