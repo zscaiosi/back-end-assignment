@@ -2,7 +2,17 @@
 #### Prerequistes:
 - Docker
 - WebBrowser
-- MongoDB
+- MongoDB running on port 27017
+#### Run the following scripts:
+- Runs and populate mongoDB: mongo localhost:27017/test ./back-end-assignment/mongobulk.js
+- Builds and runs docker containers: cd ./back-end-assignment/publishScript.sh
+- Runs PWA: cd ./products-evoxsolutions-pwa && npm run build && serve -p 80 -s build
+- Runs TDD: cd ./back-end-assignment/Products.API.Tests && dotnet test
+
+## Briefing
+Uma aplicação composta por 2 microserviços, um de autorização e outro de gerenciamento de compras de produtos por atacado.
+
+O usuário pode criar produtos e fazer compras através do PWA
 ## Original
 Elabore uma aplicação exemplo **RESTful**, ou seja, a aplicação deverá aplicar os princípios de **REST** a partir da criação de uma **WebApi**. Esse exemplo será um CRUD simples e deverá ser integrado a uma camada de front **(o layout e elementos gráficos não serão avaliados, apenas a parte de lógica e integração, preferencialmente o uso de Vue.js ou React).** 
  

@@ -4,8 +4,5 @@ Products.API/obj
 Products.API/bin
 Products.API.Tests/bin
 Products.API.Tests/obj
-Products.API/appsettings.json
-Products.API.Tests/appsettings.json
-Login.API/appsettings.json
 .vscode
 .vs
