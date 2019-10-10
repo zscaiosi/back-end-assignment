@@ -30,10 +30,23 @@ namespace Products.API
             Configuration = configuration;
         }
         public IConfiguration Configuration { get; }
+        readonly string AllowAnyCORS = "AllowAnyCORS";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // CORS Policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowAnyCORS,
+                builder =>
+                {
+                    builder
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+                });
+            });            
             // OAuth2.0
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(bearerOpt => {
@@ -91,6 +104,7 @@ namespace Products.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCors(AllowAnyCORS);
             app.UseAuthentication();
             //app.UseHttpsRedirection();
             app.UseMvc();

@@ -38,7 +38,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 

@@ -38,7 +38,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(long id)
+        public async Task<ActionResult> Get(string id)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
         /// <summary>
@@ -102,7 +102,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Products.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace Products.API.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(500);
+                return StatusCode(500, e.Message);
             }
         }
     }

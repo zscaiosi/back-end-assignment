@@ -25,6 +25,14 @@ namespace Login.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opt => {
+                opt.AddPolicy("AllowAnyCORS", b =>
+                {
+                    b.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+                });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -42,6 +50,7 @@ namespace Login.API
             }
 
             //app.UseHttpsRedirection();
+            app.UseCors("AllowAnyCORS");
             app.UseMvc();
         }
     }

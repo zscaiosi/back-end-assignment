@@ -9,9 +9,9 @@ namespace Products.API.Interfaces
     public interface IPurchasesService
     {
         Task<IEnumerable<PurchasesEntity>> ListPurchases(GetRequestFilter filter);
-        Task<PurchasesEntity> FindPurchase(long pId);
+        Task<PurchasesEntity> FindPurchase(string pId);
         Task<PurchasesEntity> CreatePurchase(PurchaseOperationView item);
         Task<PurchasesEntity> PutPurchase(long pId, PurchasesEntity item);
-        Task<bool> DeletePurchase(long pId);
+        Task<bool> DeletePurchase(string pId);
     }
 }

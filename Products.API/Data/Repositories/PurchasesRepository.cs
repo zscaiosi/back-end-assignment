@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MongoDB.Driver;
 using Products.API.Contracts.Requests;
 using Products.API.Interfaces;
+using System.Linq;
 
 namespace Products.API.Data.Repositories
 {
@@ -41,23 +42,22 @@ namespace Products.API.Data.Repositories
         /// <param name="id"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public async Task<PurchasesEntity> ModifyAsync(long id, PurchasesEntity e){
-            await _collection.UpdateOneAsync(filter.Eq("_id", id), updater.Set("cnpj", e.).Set("bundleId", e.SalesPrice));
-            return e;
+        public async Task<PurchasesEntity> ModifyAsync(object id, PurchasesEntity e){
+            throw new Exception("Cannot change a purchase, but delete and create a new one.");
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(long id) =>
+        public async Task<bool> DeleteAsync(object id) =>
             (await _collection.DeleteOneAsync(filter.Eq("_id", id))).DeletedCount > 0;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public async Task<PurchasesEntity> FindAsync(long pId) =>
+        public async Task<PurchasesEntity> FindAsync(object pId) =>
             (await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).FindAsync(filter.Eq("_id", pId))).FirstOrDefault();
         /// <summary>
         /// 
@@ -65,7 +65,7 @@ namespace Products.API.Data.Repositories
         /// <param name="filter"></param>
         /// <returns></returns>
         public async Task<IEnumerable<PurchasesEntity>> ListAsync(GetRequestFilter filter) =>
-            await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).AsQueryable().ToListAsync();
+            (await _db.GetCollection<PurchasesEntity>(COLLECTION_NAME).AsQueryable().ToListAsync()).Skip(filter.Page - 1).Take(filter.Size);
         /// <summary>
         /// NOT IMPLEMENTED
         /// </summary>

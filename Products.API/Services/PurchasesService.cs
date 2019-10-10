@@ -35,7 +35,7 @@ namespace Products.API.Services
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public async Task<PurchasesEntity> FindPurchase(long pId) =>
+        public async Task<PurchasesEntity> FindPurchase(string pId) =>
             await _purchasesRepo.FindAsync(pId);
         /// <summary>
         /// 
@@ -83,7 +83,10 @@ namespace Products.API.Services
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public async Task<bool> DeletePurchase(long pId){
+        public async Task<bool> DeletePurchase(string pId){
+            if (string.IsNullOrEmpty(pId))
+                throw new ArgumentValidatorException("Invalid values.");
+
             return await _purchasesRepo.DeleteAsync(pId);
         }
     }

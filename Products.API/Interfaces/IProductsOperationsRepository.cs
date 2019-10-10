@@ -8,9 +8,9 @@ namespace Products.API.Interfaces
     {
         Task<T> CreateAsync(T e);
         Task BulkCreateAsync(IEnumerable<T> l);
-        Task<T> ModifyAsync(long id, T e);
-        Task<bool> DeleteAsync(long id);
-        Task<T> FindAsync(long id);
+        Task<T> ModifyAsync(object id, T e);
+        Task<bool> DeleteAsync(object id);
+        Task<T> FindAsync(object id);
         Task<IEnumerable<T>> ListAsync(GetRequestFilter filter);
     }
 }

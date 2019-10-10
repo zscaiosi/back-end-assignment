@@ -37,7 +37,7 @@ namespace Products.API.Services
         /// <returns></returns>
         public async Task<List<BundlesEntity>> ListBundlesAsync(GetRequestFilter filter)
         {
-            if (filter.CheckPageAndSize())
+            if (!filter.CheckPageAndSize())
                 throw new ArgumentValidatorException("Invalid values.");
 
             return (await _bundleRepo.ListAsync(filter)).ToList();

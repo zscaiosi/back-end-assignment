@@ -43,7 +43,7 @@ namespace Products.API.Data.Repositories
         /// <param name="id"></param>
         /// <param name="e"></param>
         /// <returns></returns>
-        public async Task<BundlesEntity> ModifyAsync(long id, BundlesEntity e){
+        public async Task<BundlesEntity> ModifyAsync(object id, BundlesEntity e){
             await _collection.ReplaceOneAsync(filter.Eq("_id", id), e);
             return e;
         }
@@ -52,14 +52,14 @@ namespace Products.API.Data.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<bool> DeleteAsync(long id) =>
+        public async Task<bool> DeleteAsync(object id) =>
             (await _collection.DeleteOneAsync(filter.Eq("_id", id))).DeletedCount > 0;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="pId"></param>
         /// <returns></returns>
-        public async Task<BundlesEntity> FindAsync(long pId) =>
+        public async Task<BundlesEntity> FindAsync(object pId) =>
             (await _db.GetCollection<BundlesEntity>(COLLECTION_NAME).FindAsync(filter.Eq("_id", pId))).FirstOrDefault();
         /// <summary>
         /// 

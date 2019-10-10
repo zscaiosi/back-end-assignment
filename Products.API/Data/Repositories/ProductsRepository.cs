@@ -39,7 +39,7 @@ namespace Products.API.Data.Repositories
         /// <param name="pId"></param>
         /// <returns></returns>
         public async Task<ProductsEntity> FindAsync(long pId) =>
-            (await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindAsync(e => e.Id == pId)).FirstOrDefault();
+                (await _db.GetCollection<ProductsEntity>(COLLECTION_NAME).FindAsync(e => e.Id == pId)).FirstOrDefault();
         /// <summary>
         /// 
         /// </summary>

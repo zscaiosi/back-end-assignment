@@ -53,7 +53,9 @@ namespace Products.API.Services
                 throw new ArgumentValidatorException("Empty values.");
             if (!item.CheckId() || !item.CheckSku())
                 throw new ArgumentValidatorException("Invalid values.");
-            if (await item.AlreadyExists(_productsRepo))
+            // Finds if exists
+            var exists = (await _productsRepo.FindAsync(item.Id)) != null;
+            if (exists)
                 throw new ArgumentValidatorException("Duplicated ID.");
 
             return await _productsRepo.InsertAsync(item);
