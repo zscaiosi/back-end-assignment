@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using Products.API.Contracts.Views;
 
 namespace Products.API.Data.Repositories
