@@ -3,6 +3,7 @@
 - Docker
 - WebBrowser
 - MongoDB running on port 27017
+- Modify appsettings.json with your own credentials
 #### Run the following scripts:
 - Runs and populate mongoDB: mongo localhost:27017/test ./back-end-assignment/mongobulk.js
 - Builds and runs docker containers: cd ./back-end-assignment/publishScript.sh
